@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" data-level="3">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>typify — the typing test that types you</title>
+    <meta name="description" content="A monkeytype-style typing test that quietly re-levels its words as you type, parks you at the difficulty your speed deserves, and tells you how long War and Peace would take you." />
+    <meta property="og:site_name" content="typify" />
+    <meta property="og:title" content="typify — the typing test that types you" />
+    <meta property="og:description" content="A monkeytype-style typing test that quietly re-levels its words as you type, parks you at the difficulty your speed deserves, and tells you how long War and Peace would take you." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#86e06b" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2315111c'/%3E%3Cpath d='M8 22h4V16H8zM14 22h4V12h-4zM20 22h4V8h-4z' fill='%2386e06b'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="module" src="/js/app.js"></script>
+  </head>
+  <body data-phase="idle">
+    <div class="app">
+      <header class="top">
+        <a class="logo" href="/" aria-label="typify, start over">
+          <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M5 26h5V18H5zM13.5 26h5V12h-5zM22 26h5V6h-5z" />
+          </svg>
+          <span class="logo-text">
+            <span class="logo-kicker">it chooses you</span>
+            <span class="logo-word">typify</span>
+          </span>
+        </a>
+        <div class="top-tools">
+          <nav class="modes" id="modes" aria-label="Test length"></nav>
+          <button class="history-btn" id="liveBtn" type="button" aria-pressed="false" data-tip="show your live wpm next to the timer while you type">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18a8 8 0 1 1 16 0M12 18l4-5" /></svg>
+            live wpm
+          </button>
+          <button class="history-btn" id="historyBtn" type="button" data-tip="every test you’ve finished, compared">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 2.64-6.36M3 4v5h5M12 7v5l3.5 2" /></svg>
+            history
+          </button>
+        </div>
+      </header>
+
+      <main class="stage">
+        <section class="test" id="test" aria-label="Typing test">
+          <div class="test-bar">
+            <div class="timer" id="timer" aria-live="off" title="seconds remaining">30</div>
+            <div class="batch-meter" id="batchMeter" title="the next 5 words, coloured by the level each was dealt at" aria-hidden="true"></div>
+            <div class="live-wpm" id="liveWpm" title="rolling wpm over the last 5 seconds, the speed that moves your level"><span id="liveWpmNum">0</span> wpm</div>
+            <div class="badge" id="badge" role="status" data-tip="Your current level. The test moves it for you: hold 70+ wpm for 5 seconds to climb (100+ climbs 2, 140+ climbs 3), drop under 65 for 5 seconds to fall (under 40 falls 2, under 20 falls 3). A change lands word by word: new words are dealt at the new level, and the level (and the colours) switch when your caret reaches the first of them, at most 5 words later. Before you start, click the bars to pick the level the test starts at.">
+              <div class="badge-bars" id="badgeBars" role="slider" aria-label="Starting level" aria-valuemin="1" aria-valuemax="10" aria-valuenow="3" tabindex="0"></div>
+              <div class="badge-text">
+                <span class="badge-kicker">level</span>
+                <span class="badge-num" id="badgeNum">3</span>
+              </div>
+              <div class="badge-side">
+                <span class="badge-label" id="badgeLabel">Full Reach</span>
+                <span class="badge-pending" id="badgePending"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="words-wrap" id="wordsWrap">
+            <div class="words" id="words" aria-live="off"></div>
+            <div class="caret" id="caret" aria-hidden="true"></div>
+            <div class="sweep" aria-hidden="true"></div>
+            <div class="level-flash" id="levelFlash" aria-live="polite"></div>
+          </div>
+
+          <p class="hint" id="hint">start typing — the words will find your level</p>
+
+          <button class="restart" id="restart" type="button" aria-label="Restart test" data-tip="restart test (tab / esc)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v5h-5" /></svg>
+          </button>
+        </section>
+
+        <section class="results" id="results" aria-label="Results" hidden></section>
+      </main>
+
+      <footer class="foot">
+        <span><kbd>tab</kbd> or <kbd>esc</kbd> — restart</span>
+        <span><kbd>ctrl</kbd> + <kbd>backspace</kbd> — delete word</span>
+        <span class="foot-theme">vigil</span>
+      </footer>
+    </div>
+    <input id="hiddenInput" class="hidden-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Typing input" />
+  </body>
+</html>
