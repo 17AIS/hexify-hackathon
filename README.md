@@ -1,3 +1,6 @@
+# Website
+https://dynamic-typing-test.netlify.app/ 
+
 # typify
 
 A typing test modelled on monkeytype, except that it fights back. While you type, typify keeps re-levelling the words to match your speed. What looks like a speed test is really a way of finding your difficulty: you never pick the level, the test picks it for you. At the end, the results page shows the level you ended up at and turns your speed into the time it would take you to type real books, from a tweet up to *War and Peace*.
